@@ -1,0 +1,109 @@
+﻿<Window x:Class="SprintCompas_GUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SprintCompas_GUI"
+        mc:Ignorable="d"
+        Title="Three Coders Walk Into A Bar - 3112 Project 1" Height="500" Width="600">
+    <Grid>
+        <TabControl>
+            <TabItem Header="New">
+                <Grid>
+                    <!--Header-->
+                    <GroupBox BorderThickness="2" BorderBrush="Black" Margin="10,10,10,0" Height="39" VerticalAlignment="Top" >
+                        <WrapPanel Grid.Row="1" Grid.ColumnSpan="2" >
+                            <Label Content="Sprint Compass" FontSize="20" FontFamily="Century Gothic" FontWeight="SemiBold" FontStyle="Italic"/>
+                            <Label Content=" - Create Project!" FontSize="20" FontFamily="Century Gothic"/>
+                        </WrapPanel>
+                    </GroupBox>
+                    <!--New Project-->
+                    <GroupBox Header="New Project" BorderThickness="2" BorderBrush="Black" Margin="10,50,340,150">
+                        <StackPanel>
+                            <TextBox x:Name="TeamName" Text="Team Name" Margin="5"  />
+                            <TextBox x:Name="ProductName" Text="Product Name" Margin="5"  />
+                            <TextBox x:Name="StartDate" Text="Start Date" Margin="5" />
+                            <TextBox x:Name="HoursPerSP" Text="Hours Per Story Point" Margin="5" />
+                            <TextBox x:Name="EstSP" Text="Estimated Story Points" Margin="5"  />
+                            <TextBox x:Name="EstCost" Text="Estimated Cost" Margin="5" />
+                            <Button Name="Submit" Content="Submit" Margin="10"  />
+                        </StackPanel>
+                    </GroupBox>
+                    <!--Team Members-->
+                    <GroupBox Header="Add Team Members" BorderThickness="2" BorderBrush="Black" Margin="10,285,340,40">
+                        <StackPanel>
+                            <TextBox x:Name="TeamMember" Text="Team Member" Margin="10"  />
+                            <Button Name="Add" Content="Add" Margin="10"  />
+                        </StackPanel>
+                    </GroupBox>
+                    <!--Display-->
+                    <GroupBox Header="Display" BorderThickness="2" BorderBrush="Black" Margin="260,50,10,40">
+                        <WrapPanel Grid.Row="1" Grid.ColumnSpan="2">
+                            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                                <TextBlock x:Name="display" Text="Result info goes here..." TextWrapping="Wrap" Width="398" Height="700" Margin="3" />
+                            </ScrollViewer>
+                        </WrapPanel>
+                    </GroupBox>
+
+                </Grid>
+            </TabItem>
+            <TabItem Header="Projects">
+                <Grid>
+                    <!--Header-->
+                    <GroupBox BorderThickness="2" BorderBrush="Black" Margin="10,10,10,0" Height="39" VerticalAlignment="Top" >
+                        <WrapPanel Grid.Row="1" Grid.ColumnSpan="2" >
+                            <Label Content="Sprint Compass" FontSize="20" FontFamily="Century Gothic" FontWeight="SemiBold" FontStyle="Italic"/>
+                            <Label Content=" - Projects" FontSize="20" FontFamily="Century Gothic"/>
+                        </WrapPanel>
+                    </GroupBox>
+                    <!--Open File-->
+                    <GroupBox Header="Open Sprint" BorderThickness="2" BorderBrush="Black" Margin="10,50,10,330">
+                        <WrapPanel HorizontalAlignment="Center">
+                            <TextBox x:Name="ProjectName" Text="Project Name" Width="120" Margin="5"  />
+                            <Button Name="Find" Content="Find" Width="100" Margin="5"  />
+                        </WrapPanel>
+                    </GroupBox>
+                    <!--Sprint info-->
+                    <GroupBox Header="Sprint info" BorderThickness="2" BorderBrush="Black" Margin="10,110,300,140">
+                        <StackPanel>
+                            <TextBox x:Name="UserStory" Text="User Story" Margin="5"  />
+                            <TextBox x:Name="Priority" Text="Priority" Margin="5"  />
+                            <TextBox x:Name="IrE" Text="Initial Relative Estimate" Margin="5" />
+                            <TextBox x:Name="IrC" Text="Initial Relative Cost" Margin="5" />
+                            <Button Name="Add2" Content="Add" Margin="10"  />
+                        </StackPanel>
+                    </GroupBox>
+                    <!--Log-->
+                    <GroupBox Header="Log" BorderThickness="2" BorderBrush="Black" Margin="300,110,10,140">
+                        <StackPanel>
+                            <ComboBox Name="TeamMemberList" Margin="5"/>
+                            <TextBox x:Name="HoursWorked" Text="Hours Worked" Margin="5"  />
+                            <TextBox x:Name="Reestimate" Text="Re Estimate" Margin="5" />
+                            <Button Name="Submit2" Content="Submit" Margin="10"  />
+                        </StackPanel>
+                    </GroupBox>
+                    <!--Display-->
+                    <GroupBox Header="Display" BorderThickness="2" BorderBrush="Black" Margin="10,300,10,40">
+                        <WrapPanel Grid.Row="1" Grid.ColumnSpan="2">
+                            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                                <TextBlock x:Name="display2" Text="Result info goes here..." TextWrapping="Wrap" Width="398" Height="700" Margin="3" />
+                            </ScrollViewer>
+                        </WrapPanel>
+                    </GroupBox>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Report">
+                <Grid>
+                    <!--Header-->
+                    <GroupBox BorderThickness="2" BorderBrush="Black" Margin="10,10,10,0" Height="39" VerticalAlignment="Top" >
+                        <WrapPanel Grid.Row="1" Grid.ColumnSpan="2" >
+                            <Label Content="Sprint Compass" FontSize="20" FontFamily="Century Gothic" FontWeight="SemiBold" FontStyle="Italic"/>
+                            <Label Content=" - Reports" FontSize="20" FontFamily="Century Gothic"/>
+                        </WrapPanel>
+                    </GroupBox>
+                </Grid>
+            </TabItem>
+                
+        </TabControl>
+    </Grid>
+</Window>
