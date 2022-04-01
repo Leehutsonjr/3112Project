@@ -20,20 +20,21 @@
                     <!--New Project-->
                     <GroupBox Header="New Project" BorderThickness="2" BorderBrush="Black" Margin="10,50,340,150">
                         <StackPanel>
+                            <TextBox x:Name="Project" Text="Project Name" Margin="5"/>
                             <TextBox x:Name="TeamName" Text="Team Name" Margin="5"  />
                             <TextBox x:Name="ProductName" Text="Product Name" Margin="5"  />
                             <TextBox x:Name="StartDate" Text="Start Date" Margin="5" />
                             <TextBox x:Name="HoursPerSP" Text="Hours Per Story Point" Margin="5" />
                             <TextBox x:Name="EstSP" Text="Estimated Story Points" Margin="5"  />
                             <TextBox x:Name="EstCost" Text="Estimated Cost" Margin="5" />
-                            <Button Name="Submit" Content="Submit" Margin="10"  />
+                            <Button Name="NPSubmit" Content="Submit" Margin="10" Click="NPSubmit_Click"  />
                         </StackPanel>
                     </GroupBox>
                     <!--Team Members-->
-                    <GroupBox Header="Add Team Members" BorderThickness="2" BorderBrush="Black" Margin="10,285,340,40">
+                    <GroupBox Header="Add Team Members" BorderThickness="2" BorderBrush="Black" Margin="10,310,340,40">
                         <StackPanel>
                             <TextBox x:Name="TeamMember" Text="Team Member" Margin="10"  />
-                            <Button Name="Add" Content="Add" Margin="10"  />
+                            <Button Name="AddTeamMember" Content="Add" Margin="10" Click="AddTeamMember_Click" />
                         </StackPanel>
                     </GroupBox>
                     <!--Display-->
@@ -60,7 +61,7 @@
                     <GroupBox Header="Open Sprint" BorderThickness="2" BorderBrush="Black" Margin="10,50,10,330">
                         <WrapPanel HorizontalAlignment="Center">
                             <TextBox x:Name="ProjectName" Text="Project Name" Width="120" Margin="5"  />
-                            <Button Name="Find" Content="Find" Width="100" Margin="5"  />
+                            <Button Name="FindSprint" Content="Find" Width="100" Margin="5" Click="FindSprint_Click"  />
                         </WrapPanel>
                     </GroupBox>
                     <!--Sprint info-->
@@ -70,7 +71,7 @@
                             <TextBox x:Name="Priority" Text="Priority" Margin="5"  />
                             <TextBox x:Name="IrE" Text="Initial Relative Estimate" Margin="5" />
                             <TextBox x:Name="IrC" Text="Initial Relative Cost" Margin="5" />
-                            <Button Name="Add2" Content="Add" Margin="10"  />
+                            <Button Name="AddSprintInfo" Content="Add" Margin="10" Click="AddSprintInfo_Click" />
                         </StackPanel>
                     </GroupBox>
                     <!--Log-->
@@ -79,7 +80,7 @@
                             <ComboBox Name="TeamMemberList" Margin="5"/>
                             <TextBox x:Name="HoursWorked" Text="Hours Worked" Margin="5"  />
                             <TextBox x:Name="Reestimate" Text="Re Estimate" Margin="5" />
-                            <Button Name="Submit2" Content="Submit" Margin="10"  />
+                            <Button Name="LogSprintHours" Content="Submit" Margin="10" Click="LogSprintHours_Click" />
                         </StackPanel>
                     </GroupBox>
                     <!--Display-->

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Parser;
+using SprintCompass;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +25,36 @@ namespace SprintCompas_GUI
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void NPSubmit_Click(object sender, RoutedEventArgs e)
+        {
+            //This is not final I wil lchange this based on how you set up the parser value entry
+            //ParserJson parser = new ParserJson();
+            //parser.toJSON(Project.Text, TeamName.Text, ProductName.Text, Convert.ToDateTime(StartDate.Text), int.Parse(HoursPerSP.Text), int.Parse(EstSP.Text), double.Parse(EstCost.Text));
+
+            //Read Results to screen
+            display.Text = "Sprint Created!";
+        }
+
+        private void AddTeamMember_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void FindSprint_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void AddSprintInfo_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void LogSprintHours_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "UwCU3bvtlXkekd2111JGeo/bnzhGTigE9sa7eESfWocBxadrEDsqCrVxKOYrCn+9bh4p8f8fCEUEKOyxH1nH5w==",
+  "dgSpecHash": "LFFa6pkbN+iMlkn/bxx/0o2zy5q0HHHtLQQM7b5BwoqVmeiAAF7ORFKt3+9lJY/CzjT2YVUQI9zxbTCWTipmHQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\l_hut\\source\\repos\\Leehutsonjr\\3112Project\\SprintCompass\\SprintCompas_GUI\\SprintCompas_GUI\\SprintCompas_GUI.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\l_hut\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
+  ],
   "logs": []
 }
