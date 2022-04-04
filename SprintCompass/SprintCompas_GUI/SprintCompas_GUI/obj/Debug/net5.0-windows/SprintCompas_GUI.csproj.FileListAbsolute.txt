@@ -42,3 +42,5 @@ C:\Users\l_hut\source\repos\Leehutsonjr\3112Project\SprintCompass\SprintCompas_G
 C:\Users\l_hut\source\repos\Leehutsonjr\3112Project\SprintCompass\SprintCompas_GUI\SprintCompas_GUI\obj\Debug\net5.0-windows\ref\SprintCompas_GUI.dll
 C:\Users\l_hut\source\repos\Leehutsonjr\3112Project\SprintCompass\SprintCompas_GUI\SprintCompas_GUI\obj\Debug\net5.0-windows\SprintCompas_GUI.pdb
 C:\Users\l_hut\source\repos\Leehutsonjr\3112Project\SprintCompass\SprintCompas_GUI\SprintCompas_GUI\obj\Debug\net5.0-windows\SprintCompas_GUI.genruntimeconfig.cache
+C:\Users\l_hut\source\repos\Leehutsonjr\3112Project\SprintCompass\SprintCompas_GUI\SprintCompas_GUI\bin\Debug\net5.0-windows\Newtonsoft.Json.dll
+C:\Users\l_hut\source\repos\Leehutsonjr\3112Project\SprintCompass\SprintCompas_GUI\SprintCompas_GUI\obj\Debug\net5.0-windows\SprintCompas_GUI.csproj.CopyComplete

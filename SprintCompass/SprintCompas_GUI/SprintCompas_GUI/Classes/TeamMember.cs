@@ -8,7 +8,7 @@ namespace SprintCompass
 {
     public class TeamMember
     {
-        private string name { get; }
+        public string name { get; }
         public TeamMember(string name)
         {
             this.name = name;

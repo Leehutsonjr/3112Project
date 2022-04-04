@@ -5,13 +5,18 @@ namespace SprintCompass
 {
     public class Project
     {
-        private string TeamName { get; }
-        private string ProductName { get; }
-        private DateTime StartDate { get; }
-        private int HoursToStory { get; }
-        private int EstStoryPts { get; }
-        private double EstProjectCost { get; } //in Canadian Dollars (CAD)
-        private List<TeamMember> TeamMembers {get;}
+        public string TeamName { get; set; }
+        public string ProductName { get; set; }
+        public DateTime StartDate { get; set; }
+        public int HoursToStory { get; set; }
+        public int EstStoryPts { get; set; }
+        public double EstProjectCost { get; set; } //in Canadian Dollars (CAD)
+        public List<TeamMember> TeamMembers { get; set; }
+
+        public Project()
+        {
+
+        }
 
         public Project(string team, string product, DateTime start, int hours, int points, double dollars)
         {

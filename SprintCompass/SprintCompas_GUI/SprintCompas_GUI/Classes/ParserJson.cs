@@ -11,17 +11,25 @@ namespace Parser
 {
     public class ParserJson
     {
-        //Converts .Net Object to JSON
-        //LEE NOTES: I added these values to the method because Im not sure how I am supposed to get these values into the project.  Yani, can you set this 
-        //up the way you'd like (not hard coded) then I can feed the values to it
-        public void toJSON(string filename, string team, string product, DateTime start, int hours, int points, double dollars)
+        //Create Project
+        public Project createProject(string team, string product, DateTime start, int hour, int points, double dollars)
         {
-            Project proj = new Project(team, product, start, hours, points, dollars);
-            proj = createProject();
 
-           
 
-            File.WriteAllText(filename, JsonConvert.SerializeObject(proj));
+            Project p = new Project(team, product, start, hour, points, dollars);
+
+
+
+            return p;
+
+        }
+
+        //Converts .Net Object to JSON
+        public void toJSON(string filename, Project proj)
+        {
+            //Project proj = new Project(team, product, start, hour, points, dollars);
+
+            File.WriteAllText($"{filename}.json", JsonConvert.SerializeObject(proj));
 
             using (StreamWriter file = File.CreateText(filename))
             {
@@ -33,40 +41,30 @@ namespace Parser
         }
 
         //Converts JSON to .Net object
-        public void fromJSON(string filename)
+        public Project fromJSON(string filename)
         {
-            
-            
-            if (File.Exists(filename))
+
+
+            if (File.Exists($"{filename}.json"))
             {
-                string justText = File.ReadAllText(filename);
-                
+                string justText = File.ReadAllText($"{filename}.json");
+
                 Project proj = JsonConvert.DeserializeObject<Project>(justText);
 
                 //The following is an example of what u can do with the data that was Deserialized from the JSON, you can now access each property of the object on its own
-                Console.WriteLine("Team name is: {0}",proj.TeamName);
+                Console.WriteLine("Team name is: {0}", proj.TeamName);
+
+                return proj;
             }
             else
             {
                 Console.WriteLine("File doesnt exist");
+                return null;
             }
 
         }
 
 
-        //You can use this method to pass data members from the GUI and create project Objects with it
-        //the toJson() method calls this to convert the object to a JSON string
-        static Project createProject()
-        {
-            DateTime timeNow = DateTime.Now;
 
-            Project p = new Project("testteam", "testproduct", timeNow, 20, 30, 1000);
-
-            p.AddTeamMember("yanni");
-            p.AddTeamMember("tsakos");
-            
-            return p;
-
-        }
     }
 }
