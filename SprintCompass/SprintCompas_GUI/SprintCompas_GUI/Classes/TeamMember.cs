@@ -9,9 +9,13 @@ namespace SprintCompass
     public class TeamMember
     {
         public string name { get; }
+        public int hoursWorked { get; set; }
         public TeamMember(string name)
         {
             this.name = name;
+            hoursWorked = 0;
         }
+
+
     }
 }

@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
-namespace Parser//CHANGE NAMESPACE TO WHATEVER THE PROJECT IS!!!
+using SprintCompass;
+namespace SprintCompass
 {
     public class UserStory
     {
@@ -14,6 +14,7 @@ namespace Parser//CHANGE NAMESPACE TO WHATEVER THE PROJECT IS!!!
         public int relativeEstimate { get; set; } 
         public double estimatedCost { get; set; }
 
+        public List<TeamMember> teamMembers { get; set; }
         //UserStory() Default constructor
         public UserStory()
         {
@@ -21,12 +22,13 @@ namespace Parser//CHANGE NAMESPACE TO WHATEVER THE PROJECT IS!!!
         }
 
         //UserStory() Constructor
-        public UserStory(string story, int priority, int relativeEstimate, double estimatedCost)
+        public UserStory(string story, int priority, int relativeEstimate, double estimatedCost, List<TeamMember> teamMembers)
         {
             this.story = story;
             this.priority = priority;
             this.relativeEstimate = relativeEstimate;
             this.estimatedCost = estimatedCost;
+            this.teamMembers = teamMembers;
         }
     }
 }
