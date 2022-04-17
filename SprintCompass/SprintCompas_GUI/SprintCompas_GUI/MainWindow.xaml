@@ -100,7 +100,7 @@
                             <ComboBox Name="Sprint" Margin="5"/>
                             <Label Content="User Story"></Label>
                             <ComboBox Name="UserStoryList" Margin="5" SelectionChanged="UserStoryList_SelectionChanged"/>
-                            <Button Name="AddUserStoryToSprint" Content="Add To Sprint" Margin="10" Click="AddSprintInfo_Click" />
+                            <Button Name="AddUserStoryToSprint" Content="Add To Sprint" Margin="10" Click="AddUserStoryToSprint_Click" />
                         </StackPanel>
                     </GroupBox>
                     <!--Display-->

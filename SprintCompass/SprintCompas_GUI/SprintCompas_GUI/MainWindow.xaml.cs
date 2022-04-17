@@ -22,6 +22,7 @@ namespace SprintCompas_GUI
     /// </summary>
     public partial class MainWindow : Window
     {
+        public Project proj = new();
         public MainWindow()
         {
             InitializeComponent();
@@ -29,7 +30,7 @@ namespace SprintCompas_GUI
 
         private void NPSubmit_Click(object sender, RoutedEventArgs e)
         {
-            Project proj = new Project();
+            //Project proj = new Project();
             ParserJson parser = new ParserJson();
             proj = parser.createProject(TeamName.Text, ProductName.Text, Convert.ToDateTime(StartDate.Text), int.Parse(HoursPerSP.Text), int.Parse(EstSP.Text), double.Parse(EstCost.Text));
 
@@ -61,7 +62,7 @@ namespace SprintCompas_GUI
         private void FindSprint_Click(object sender, RoutedEventArgs e)
         {
             //read details to the screen
-            Project proj = new Project();
+            //proj = new Project();
             ParserJson parser = new ParserJson();
             proj = parser.fromJSON(ProjectName.Text);
 
@@ -70,7 +71,8 @@ namespace SprintCompas_GUI
 
             display2.Text += $"{proj.ProductName}\n";
             display2.Text += $"{proj.TeamName}\n";
-            display2.Text += $"{proj.EstProjectCost.ToString()}\n";
+            display2.Text += $"{proj.EstProjectCost.ToString()}";
+            display2.Text += $"\n\nTeam Members: \n";
             foreach (var t in proj.TeamMembers)
             {
                 //Load team members to combobox
@@ -78,19 +80,46 @@ namespace SprintCompas_GUI
                 //display team member to screen
                 display2.Text += $"Team member: {t.name}\n";
             }
+
+            //Print user stories to screen
+            display2.Text += $"\nUser Stories: \n";
+            int count = 1;
+            foreach (var u in proj.UserStories)
+            {
+                display2.Text += $"#{count}: \n";
+                display2.Text += $"User Story: {u.story}\n";
+                display2.Text += $"Priority: {u.priority}\n";
+                display2.Text += $"IRE: {u.relativeEstimate}\n";
+                display2.Text += $"IRC: {u.estimatedCost}\n\n";
+                count++;
+                
+            }
         }
 
         private void AddSprintInfo_Click(object sender, RoutedEventArgs e)
         {
+            ParserJson parser = new ParserJson();
+            Project temp = new();
             UserStory uS = new UserStory();
             uS.story = UserStory.Text;
             uS.priority = int.Parse(Priority.Text);
             uS.relativeEstimate = int.Parse(IrE.Text);
             uS.estimatedCost = double.Parse(IrC.Text);
 
-            //TODO: Add user story to project
+            //Save to Project Object
+            proj.UserStories.Add(uS);
 
-            //TODO: Read User stories from project to screen
+            //Save user stories to Json
+            parser.toJSON(ProjectName.Text, proj);
+
+            //Read file contents to screen
+            temp = parser.fromJSON(ProjectName.Text);
+
+            //TODO: Fix format of screen reading
+            display2.Text += $"User Story: {temp.UserStories[0].story}";
+            display2.Text += $"Priority: {temp.UserStories[0].priority}"; 
+            display2.Text += $"IRE: {temp.UserStories[0].relativeEstimate}"; 
+            display2.Text += $"IRC: {temp.UserStories[0].estimatedCost}"; 
 
         }
 
@@ -107,7 +136,6 @@ namespace SprintCompas_GUI
         private void FindSprint2_Click(object sender, RoutedEventArgs e)
         {
             //read details to the screen
-            Project proj = new Project();
             ParserJson parser = new ParserJson();
             proj = parser.fromJSON(ProjectName2.Text);
 
@@ -116,7 +144,8 @@ namespace SprintCompas_GUI
 
             display3.Text += $"{proj.ProductName}\n";
             display3.Text += $"{proj.TeamName}\n";
-            display3.Text += $"{proj.EstProjectCost.ToString()}\n";
+            display3.Text += $"{proj.EstProjectCost.ToString()}";
+            display3.Text += $"\n\nTeam Members: \n";
             foreach (var t in proj.TeamMembers)
             {
                 //Load team members to combobox
@@ -124,6 +153,17 @@ namespace SprintCompas_GUI
                 //display team member to screen
                 display3.Text += $"Team member: {t.name}\n";
             }
+
+            //Populate combo box with user stories
+            foreach(var u in proj.UserStories)
+            {
+                UserStoryList.Items.Add(u.story);
+            }
+        }
+
+        private void AddUserStoryToSprint_Click(object sender, RoutedEventArgs e)
+        {
+           
         }
     }
 }

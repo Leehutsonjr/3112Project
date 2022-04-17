@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Parser;
+using System;
 using System.Collections.Generic;
 
 namespace SprintCompass
@@ -12,6 +13,7 @@ namespace SprintCompass
         public int EstStoryPts { get; set; }
         public double EstProjectCost { get; set; } //in Canadian Dollars (CAD)
         public List<TeamMember> TeamMembers { get; set; }
+        public List<UserStory> UserStories { get; set; }
 
         public Project()
         {
@@ -27,6 +29,7 @@ namespace SprintCompass
             EstStoryPts = points;
             EstProjectCost = dollars;
             TeamMembers = new();
+            UserStories = new();
         }
 
         public void AddTeamMember(string name)
