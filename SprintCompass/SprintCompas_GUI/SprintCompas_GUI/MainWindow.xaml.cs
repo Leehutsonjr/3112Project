@@ -1,4 +1,5 @@
 ﻿using Parser;
+using SprintCompas_GUI.Classes;
 using SprintCompass;
 using System;
 using System.Collections.Generic;
@@ -105,6 +106,7 @@ namespace SprintCompas_GUI
             uS.priority = int.Parse(Priority.Text);
             uS.relativeEstimate = int.Parse(IrE.Text);
             uS.estimatedCost = double.Parse(IrC.Text);
+            uS.teamMembers = proj.TeamMembers;
 
             //Save to Project Object
             proj.UserStories.Add(uS);
@@ -116,10 +118,10 @@ namespace SprintCompas_GUI
             temp = parser.fromJSON(ProjectName.Text);
 
             //TODO: Fix format of screen reading
-            display2.Text += $"User Story: {temp.UserStories[0].story}";
-            display2.Text += $"Priority: {temp.UserStories[0].priority}"; 
-            display2.Text += $"IRE: {temp.UserStories[0].relativeEstimate}"; 
-            display2.Text += $"IRC: {temp.UserStories[0].estimatedCost}"; 
+            display2.Text += $"User Story: {temp.UserStories[0].story}\n";
+            display2.Text += $"Priority: {temp.UserStories[0].priority}\n"; 
+            display2.Text += $"IRE: {temp.UserStories[0].relativeEstimate}\n"; 
+            display2.Text += $"IRC: {temp.UserStories[0].estimatedCost}\n"; 
 
         }
 
@@ -154,16 +156,109 @@ namespace SprintCompas_GUI
                 display3.Text += $"Team member: {t.name}\n";
             }
 
+            //Populate combobox with sprints
+            foreach(var s in proj.Sprints)
+            {
+                SprintBox.Items.Add(s.sprintName);
+            }
+
             //Populate combo box with user stories
             foreach(var u in proj.UserStories)
             {
                 UserStoryList.Items.Add(u.story);
             }
+
+            if(proj.Sprints != null)
+            {
+                //Print Sprint and user stories
+                foreach (var s in proj.Sprints)
+                {
+                    display3.Text += s.sprintName + "\n";
+                    foreach (var u in s.userStories)
+                    {
+                        display3.Text += u.story + "\n";
+                        
+                    }
+                }
+            }
         }
 
         private void AddUserStoryToSprint_Click(object sender, RoutedEventArgs e)
         {
-           
+            ParserJson parser = new ParserJson();
+
+            //If sprint doesnt exists, add it first
+            if (proj.Sprints.Count < SprintBox.SelectedIndex)
+            {
+                //Save sprint to Json
+                parser.toJSON(ProjectName2.Text, proj);
+            }
+
+            //If the sprint is there, save the user story to it
+            if(proj.Sprints[SprintBox.SelectedIndex] != null)
+            {
+                proj.Sprints[SprintBox.SelectedIndex].userStories.Add(proj.UserStories[UserStoryList.SelectedIndex]);
+                //Save user stories to Json
+                parser.toJSON(ProjectName2.Text, proj);
+            }
+
+            //read details to the screen
+            proj = parser.fromJSON(ProjectName2.Text);
+
+            display3.Text = $"{ProjectName2.Text}\n";
+
+            display3.Text += $"{proj.ProductName}\n";
+            display3.Text += $"{proj.TeamName}\n";
+            display3.Text += $"{proj.EstProjectCost.ToString()}";
+            display3.Text += $"\n\nTeam Members: \n";
+            foreach (var t in proj.TeamMembers)
+            {
+                //Load team members to combobox
+                TeamMemberList.Items.Add(t.name);
+                //display team member to screen
+                display3.Text += $"Team member: {t.name}\n";
+            }
+
+            //Populate combobox with sprints
+            foreach (var s in proj.Sprints)
+            {
+                SprintBox.Items.Add(s.sprintName);
+            }
+
+            //Populate combo box with user stories
+            foreach (var u in proj.UserStories)
+            {
+                UserStoryList.Items.Add(u.story);
+            }
+
+            //Print Sprint and user stories
+            foreach(var s in proj.Sprints)
+            {
+                display3.Text += s.sprintName + "\n";
+                foreach(var u in s.userStories)
+                {
+                    display3.Text += u.story + "\n";
+                }
+            }
+
+        }
+
+        private void AddSprint_Click(object sender, RoutedEventArgs e)
+        {
+            proj.AddEmptySprint(proj);
+
+            //Clear combo box and populate with sprints
+            SprintBox.Items.Clear();
+            foreach (var s in proj.Sprints)
+            {
+                SprintBox.Items.Add(s.sprintName);
+            }
+        }
+
+        private void SaveToPdf_Click(object sender, RoutedEventArgs e)
+        {
+            PDFCreator pdf = new PDFCreator();
+            pdf.GenerateSprintRetrospective(proj.Sprints[0]);
         }
     }
 }

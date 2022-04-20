@@ -94,12 +94,16 @@
                         </WrapPanel>
                     </GroupBox>
                     <!--Backlog-->
-                    <GroupBox Header="Backlog" BorderThickness="2" BorderBrush="Black"  Margin="10,50,340,200" Grid.ColumnSpan="3">
+                    <GroupBox Header="Backlog" BorderThickness="2" BorderBrush="Black"  Margin="10,50,340,170" Grid.ColumnSpan="3">
                         <StackPanel>
                             <Label Content="Sprint"></Label>
-                            <ComboBox Name="Sprint" Margin="5"/>
+                            <WrapPanel>
+                                <ComboBox Name="SprintBox" Margin="5" Width="120"/>
+                                <Button x:Name="AddSprint" Content="Add Sprint" Margin="5" Width="75" Click="AddSprint_Click"/>
+                            </WrapPanel>
                             <Label Content="User Story"></Label>
-                            <ComboBox Name="UserStoryList" Margin="5" SelectionChanged="UserStoryList_SelectionChanged"/>
+                            <ComboBox Name="UserStoryList" Margin="5" />
+                            <!--SelectionChanged="UserStoryList_SelectionChanged"-->
                             <Button Name="AddUserStoryToSprint" Content="Add To Sprint" Margin="10" Click="AddUserStoryToSprint_Click" />
                         </StackPanel>
                     </GroupBox>
@@ -122,6 +126,9 @@
                             <Label Content="Sprint Compass" FontSize="20" FontFamily="Century Gothic" FontWeight="SemiBold" FontStyle="Italic"/>
                             <Label Content=" - Reports" FontSize="20" FontFamily="Century Gothic"/>
                         </WrapPanel>
+                    </GroupBox>
+                    <GroupBox>
+                        <Button x:Name="SaveToPdf" Content="Save to Pdf" Margin="5" Width="75" Height="50" Click="SaveToPdf_Click"/>
                     </GroupBox>
                 </Grid>
             </TabItem>

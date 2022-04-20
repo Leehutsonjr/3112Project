@@ -16,7 +16,7 @@ namespace SprintCompas_GUI
         //Sprint() default constructor
         public Sprint()
         {
-
+            userStories = new();
         }
 
         //Sprint() Constructor 3-arg
@@ -25,6 +25,7 @@ namespace SprintCompas_GUI
             this.sprintName = sprintName;
             this.userStories = userStories;
             this.totalHours = totalHours;
+            userStories = new();
         }
     }
 }

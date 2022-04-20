@@ -1,4 +1,5 @@
 ﻿using Parser;
+using SprintCompas_GUI;
 using System;
 using System.Collections.Generic;
 
@@ -14,6 +15,7 @@ namespace SprintCompass
         public double EstProjectCost { get; set; } //in Canadian Dollars (CAD)
         public List<TeamMember> TeamMembers { get; set; }
         public List<UserStory> UserStories { get; set; }
+        public List<Sprint> Sprints { get; set; }
 
         public Project()
         {
@@ -30,11 +32,28 @@ namespace SprintCompass
             EstProjectCost = dollars;
             TeamMembers = new();
             UserStories = new();
+            Sprints = new();
+
+            //Add 12 Sprints to the project
+            Sprint sprint = new Sprint();
+            sprint.sprintName = "Sprint #1";
+            Sprints.Add(sprint);
+            
         }
 
         public void AddTeamMember(string name)
         {
             TeamMembers.Add(new TeamMember(name));
+        }
+
+        public void AddEmptySprint(Project proj)
+        {
+            //Find the last sprint number
+            var temp = proj.Sprints.Count;
+            Sprint sprint = new Sprint();
+            sprint.sprintName = $"Sprint #{(temp + 1)}";
+            Sprints.Add(sprint);
+            
         }
     }
 }

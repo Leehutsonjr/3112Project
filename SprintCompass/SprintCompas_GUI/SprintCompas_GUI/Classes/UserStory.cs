@@ -15,6 +15,8 @@ namespace SprintCompass
         public double estimatedCost { get; set; }
 
         public List<TeamMember> teamMembers { get; set; }
+
+        public List<Subtask> subTasks;
         //UserStory() Default constructor
         public UserStory()
         {
@@ -29,6 +31,7 @@ namespace SprintCompass
             this.relativeEstimate = relativeEstimate;
             this.estimatedCost = estimatedCost;
             this.teamMembers = teamMembers;
+            subTasks = new();
         }
     }
 }
