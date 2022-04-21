@@ -14,6 +14,11 @@ namespace SprintCompass
         public int hoursRemaining;
         public Dictionary<string, int> HoursBooked;
 
+        public Subtask()
+        {
+            HoursBooked = new();
+        }
+
 
         //Example only, don't use in production
         private static Subtask sampleTask()

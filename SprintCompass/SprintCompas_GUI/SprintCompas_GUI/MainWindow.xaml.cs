@@ -55,6 +55,9 @@ namespace SprintCompas_GUI
                 case "AddSub":
                     display.Text = $"The Sub Task has Been Added to The User Story!\n\n";
                     break;
+                case "AddTMToSub":
+                    display.Text = $"The Team Member has Been Added to The Sub Task!\n\n";
+                    break;
             }
         }
 
@@ -126,6 +129,13 @@ namespace SprintCompas_GUI
                                     display.Text += $"\tDescription: {st.description}\n";
                                     display.Text += $"\t\tEstimate Hours: {st.initialEstimate}\n";
                                     display.Text += $"\t\tHours remaining: {st.hoursRemaining}\n";
+
+                                    //Print the team member
+                                    foreach(var h in st.HoursBooked)
+                                    {
+                                        display.Text += $"\t\tTeam Member: {h.Key}\n";
+                                    }
+                                    
                                 }
                             }
                             else
@@ -159,6 +169,8 @@ namespace SprintCompas_GUI
                     display.Text += $"\tIRC: {u.estimatedCost}\n\n";
                     count++;
 
+                    //Print subtasks to screen
+                    display.Text += $"\nSub Tasks: \n";
                     //Print Subtasks
                     if (u.subTasks != null)
                     {
@@ -168,6 +180,12 @@ namespace SprintCompas_GUI
                             display.Text += $"\tDescription: {st.description}\n";
                             display.Text += $"\t\tEstimate Hours: {st.initialEstimate}\n";
                             display.Text += $"\t\tHours remaining: {st.hoursRemaining}\n";
+
+                            //Print the team member
+                            foreach (var h in st.HoursBooked)
+                            {
+                                display.Text += $"\t\tTeam Member: {h.Key}\n";
+                            }
                         }
                     }
                     else
@@ -223,12 +241,6 @@ namespace SprintCompas_GUI
             {
                 UserStoryList2.Items.Add(u.story);
             }
-
-            //Populate combobox with teammembers
-            //foreach (var t in proj.TeamMembers)
-            //{
-            //    TeamMemberList.Items.Add(t.name);
-            //}
         }
 
         private void AddSprintInfo_Click(object sender, RoutedEventArgs e)
@@ -269,7 +281,43 @@ namespace SprintCompas_GUI
 
         private void LogSprintHours_Click(object sender, RoutedEventArgs e)
         {
+            buttonName = "AddTMToSub";
 
+            ParserJson parser = new ParserJson();
+
+            var sprint = proj.Sprints[SprintBox.SelectedIndex];
+            var userStory = sprint.userStories[UserStoryList.SelectedIndex];
+            var subTask = userStory.subTasks[SubTasks.SelectedIndex];
+            var teamMember = TeamMemberList.SelectedItem.ToString();
+            var hoursWorked = int.Parse(HoursWorked.Text);
+            //If the sprint is there, save the user story to it
+            if (subTask != null)
+            {
+                subTask.HoursBooked.Add(teamMember, hoursWorked);
+                //Save user stories to Json
+                parser.toJSON(ProjectName2.Text, proj);
+            }
+
+            //read details to the screen
+            proj = parser.fromJSON(ProjectName2.Text);
+
+            Print(display3, ProjectName2, proj);
+
+            //Clear ComboBoxes
+            SprintBox.Items.Clear();
+            UserStoryList.Items.Clear();
+
+            //Populate combobox with sprints
+            foreach (var s in proj.Sprints)
+            {
+                SprintBox.Items.Add(s.sprintName);
+            }
+
+            //Populate combo box with user stories
+            foreach (var u in proj.UserStories)
+            {
+                UserStoryList.Items.Add(u.story);
+            }
         }
 
         private void UserStoryList_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -286,19 +334,6 @@ namespace SprintCompas_GUI
             proj = parser.fromJSON(ProjectName2.Text);
 
             Print(display3, ProjectName2, proj);
-            //display3.Text = $"{ProjectName2.Text}\n";
-
-            //display3.Text += $"{proj.ProductName}\n";
-            //display3.Text += $"{proj.TeamName}\n";
-            //display3.Text += $"{proj.EstProjectCost.ToString()}";
-            //display3.Text += $"\n\nTeam Members: \n";
-            //foreach (var t in proj.TeamMembers)
-            //{
-            //    //Load team members to combobox
-            //    TeamMemberList.Items.Add(t.name);
-            //    //display team member to screen
-            //    display3.Text += $"Team member: {t.name}\n";
-            //}
 
             //Clear ComboBoxes
             SprintBox.Items.Clear();
@@ -314,6 +349,12 @@ namespace SprintCompas_GUI
             foreach(var u in proj.UserStories)
             {
                 UserStoryList.Items.Add(u.story);
+            }
+
+            //Populate combobox with teammembers
+            foreach (var t in proj.TeamMembers)
+            {
+                TeamMemberList.Items.Add(t.name);
             }
         }
 
@@ -431,6 +472,15 @@ namespace SprintCompas_GUI
 
             PDFCreator pdf = new PDFCreator();
             pdf.GenerateTeamSummary(proj.Sprints[0]);
+        }
+
+        private void LoadSubtasks_Click(object sender, RoutedEventArgs e)
+        {
+            //Populate combo box with sub tasks
+            foreach (var u in proj.UserStories[UserStoryList.SelectedIndex].subTasks)
+            {
+                SubTasks.Items.Add(u.description);
+            }
         }
     }
 }

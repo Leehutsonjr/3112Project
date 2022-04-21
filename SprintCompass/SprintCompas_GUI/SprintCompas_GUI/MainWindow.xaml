@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SprintCompas_GUI"
         mc:Ignorable="d"
-        Title="Three Coders Walk Into A Bar - 3112 Project 1" Height="520" Width="600">
+        Title="Three Coders Walk Into A Bar - 3112 Project 1" Height="600" Width="600">
     <Grid>
         <TabControl>
             <TabItem Header="New">
@@ -58,7 +58,7 @@
                         </WrapPanel>
                     </GroupBox>
                     <!--Sprint info-->
-                    <GroupBox Header="Sprint info" BorderThickness="2" BorderBrush="Black"  Margin="10,0,340,230" Grid.ColumnSpan="2" Height="176" VerticalAlignment="Bottom">
+                    <GroupBox Header="Sprint info" BorderThickness="2" BorderBrush="Black"  Margin="10,50,340,230" Grid.ColumnSpan="2" VerticalAlignment="Top">
                         <StackPanel>
                             <TextBox x:Name="UserStory" Text="User Story" Margin="5"  />
                             <TextBox x:Name="Priority" Text="Priority" Margin="5"  />
@@ -77,15 +77,6 @@
                             <Button Name="AddSubTaskToUserStory" Content="Add" Margin="10" Click="AddSubTaskToUserStory_Click" />
                         </StackPanel>
                     </GroupBox>
-                    <!--Log-->
-                    <!--<GroupBox Header="Log" BorderThickness="2" BorderBrush="Black" Margin="10,250,340,40" Grid.Column="2">
-                        <StackPanel>
-                            <ComboBox Name="TeamMemberList" Margin="5"/>
-                            <TextBox x:Name="HoursWorked" Text="Hours Worked" Margin="5"  />
-                            <TextBox x:Name="Reestimate" Text="Re Estimate" Margin="5" />
-                            <Button Name="LogSprintHours" Content="Submit" Margin="10" Click="LogSprintHours_Click" />
-                        </StackPanel>
-                    </GroupBox>-->
                     <!--Display-->
                     <GroupBox Header="Display" BorderThickness="2" BorderBrush="Black" Margin="142,50,10,40" Grid.Column="1">
                         <WrapPanel Grid.Row="1" Grid.ColumnSpan="2">
@@ -96,7 +87,7 @@
                     </GroupBox>
                 </Grid>
             </TabItem>
-            <TabItem Header="Backlog">
+            <TabItem Header="Backlog" Height="20" VerticalAlignment="Top">
                 <Grid>
                     <!--Header-->
                     <GroupBox BorderThickness="2" BorderBrush="Black" Margin="10,10,10,0" Height="39" VerticalAlignment="Top" >
@@ -108,20 +99,41 @@
                         </WrapPanel>
                     </GroupBox>
                     <!--Backlog-->
-                    <GroupBox Header="Backlog" BorderThickness="2" BorderBrush="Black"  Margin="10,50,340,40" Grid.ColumnSpan="3">
+                    <GroupBox Header="Backlog" BorderThickness="2" BorderBrush="Black"  Margin="10,50,340,310" Grid.ColumnSpan="3">
                         <StackPanel>
                             <Label Content="Sprint"></Label>
                             <WrapPanel>
-                                <ComboBox Name="SprintBox" Margin="5" Width="120"/>
-                                <Button x:Name="AddSprint" Content="Add Sprint" Margin="5" Width="75" Click="AddSprint_Click"/>
+                                <ComboBox Name="SprintBox" Margin="5" Width="100"/>
+                                <Button x:Name="AddSprint" Content="New Sprint" Margin="5" Width="90" Click="AddSprint_Click"/>
                             </WrapPanel>
                             <Label Content="User Story"></Label>
-                            <ComboBox Name="UserStoryList" Margin="5" />
+                            <WrapPanel>
+                                <ComboBox Name="UserStoryList" Margin="5" Width="100" />
+                                <Button Name="AddUserStoryToSprint" Content="Story To Sprint" Margin="5" Width="90" Click="AddUserStoryToSprint_Click" />
+                            </WrapPanel>
+                            
+                            
                             <!--SelectionChanged="UserStoryList_SelectionChanged"-->
-                            <Button Name="AddUserStoryToSprint" Content="Add To Sprint" Margin="10" Click="AddUserStoryToSprint_Click" />
+                            
                             <!--<Label Content="Sub Tasks"></Label>
                             <ComboBox Name="SubTasksList" Margin="5" />
                             <Button Name="AddSubTaskToUserStory" Content="Add To User Story" Margin="10" Click="AddSubTaskToUserStory_Click" />-->
+                        </StackPanel>
+                    </GroupBox>
+                    <!--Log-->
+                    <GroupBox Header="Log" BorderThickness="2" BorderBrush="Black" Margin="10,230,340,40" Grid.Column="2">
+                        <StackPanel>
+                            <Label Content="Sub Task"></Label>
+                            <WrapPanel>
+                                <ComboBox Name="SubTasks" Margin="5" Width="100"/>
+                                <Button Name="LoadSubtasks" Content="Load Sub Tasks" Margin="5" Width="90" Click="LoadSubtasks_Click" />
+                            </WrapPanel>
+                            
+                            <Label Content="Team Member"></Label>
+                            <ComboBox Name="TeamMemberList" Margin="5"/>
+                            <TextBox x:Name="HoursWorked" Text="Hours Worked" Margin="5"  />
+                            <TextBox x:Name="Reestimate" Text="Re Estimate" Margin="5" />
+                            <Button Name="LogSprintHours" Content="Add To Sub Task" Margin="10" Click="LogSprintHours_Click" />
                         </StackPanel>
                     </GroupBox>
                     <!--Display-->
