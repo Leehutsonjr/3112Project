@@ -44,8 +44,12 @@
             </TabItem>
             <TabItem Header="Projects">
                 <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="59*"/>
+                        <ColumnDefinition Width="238*"/>
+                    </Grid.ColumnDefinitions>
                     <!--Header-->
-                    <GroupBox BorderThickness="2" BorderBrush="Black" Margin="10,10,10,0" Height="39" VerticalAlignment="Top" Grid.ColumnSpan="3" >
+                    <GroupBox BorderThickness="2" BorderBrush="Black" Margin="10,10,10,0" Height="39" VerticalAlignment="Top" Grid.ColumnSpan="2" >
                         <WrapPanel Grid.Row="1" Grid.ColumnSpan="2" >
                             <Label Content="Sprint Compass" FontSize="20" FontFamily="Century Gothic" FontWeight="SemiBold" FontStyle="Italic"/>
                             <Label Content="- Projects" FontSize="20" FontFamily="Century Gothic"/>
@@ -54,7 +58,7 @@
                         </WrapPanel>
                     </GroupBox>
                     <!--Sprint info-->
-                    <GroupBox Header="Sprint info" BorderThickness="2" BorderBrush="Black"  Margin="10,50,340,200" Grid.ColumnSpan="3">
+                    <GroupBox Header="Sprint info" BorderThickness="2" BorderBrush="Black"  Margin="10,0,340,230" Grid.ColumnSpan="2" Height="176" VerticalAlignment="Bottom">
                         <StackPanel>
                             <TextBox x:Name="UserStory" Text="User Story" Margin="5"  />
                             <TextBox x:Name="Priority" Text="Priority" Margin="5"  />
@@ -63,17 +67,27 @@
                             <Button Name="AddSprintInfo" Content="Add" Margin="10" Click="AddSprintInfo_Click" />
                         </StackPanel>
                     </GroupBox>
+                    <!---Subtasks-->
+                    <GroupBox Header="Subtasks" BorderThickness="2" BorderBrush="Black" Margin="10,230,340,40" Grid.ColumnSpan="2">
+                        <StackPanel>
+                            <ComboBox Name="UserStoryList2" Margin="5" />
+                            <TextBox x:Name="Description" Text="Description" Margin="5"  />
+                            <TextBox x:Name="InitialEstimate" Text="Initial Estimate" Margin="5"  />
+                            <TextBox x:Name="HoursRemaining" Text="Hours Remaining" Margin="5" />
+                            <Button Name="AddSubTaskToUserStory" Content="Add" Margin="10" Click="AddSubTaskToUserStory_Click" />
+                        </StackPanel>
+                    </GroupBox>
                     <!--Log-->
-                    <GroupBox Header="Log" BorderThickness="2" BorderBrush="Black" Margin="10,250,340,40" Grid.Column="2">
+                    <!--<GroupBox Header="Log" BorderThickness="2" BorderBrush="Black" Margin="10,250,340,40" Grid.Column="2">
                         <StackPanel>
                             <ComboBox Name="TeamMemberList" Margin="5"/>
                             <TextBox x:Name="HoursWorked" Text="Hours Worked" Margin="5"  />
                             <TextBox x:Name="Reestimate" Text="Re Estimate" Margin="5" />
                             <Button Name="LogSprintHours" Content="Submit" Margin="10" Click="LogSprintHours_Click" />
                         </StackPanel>
-                    </GroupBox>
+                    </GroupBox>-->
                     <!--Display-->
-                    <GroupBox Header="Display" BorderThickness="2" BorderBrush="Black" Margin="260,50,10,40" Grid.ColumnSpan="3">
+                    <GroupBox Header="Display" BorderThickness="2" BorderBrush="Black" Margin="142,50,10,40" Grid.Column="1">
                         <WrapPanel Grid.Row="1" Grid.ColumnSpan="2">
                             <ScrollViewer VerticalScrollBarVisibility="Auto">
                                 <TextBlock x:Name="display2" Text="Result info goes here..." TextWrapping="Wrap" Width="398" Height="700" Margin="3" />
@@ -94,7 +108,7 @@
                         </WrapPanel>
                     </GroupBox>
                     <!--Backlog-->
-                    <GroupBox Header="Backlog" BorderThickness="2" BorderBrush="Black"  Margin="10,50,340,170" Grid.ColumnSpan="3">
+                    <GroupBox Header="Backlog" BorderThickness="2" BorderBrush="Black"  Margin="10,50,340,40" Grid.ColumnSpan="3">
                         <StackPanel>
                             <Label Content="Sprint"></Label>
                             <WrapPanel>
@@ -105,6 +119,9 @@
                             <ComboBox Name="UserStoryList" Margin="5" />
                             <!--SelectionChanged="UserStoryList_SelectionChanged"-->
                             <Button Name="AddUserStoryToSprint" Content="Add To Sprint" Margin="10" Click="AddUserStoryToSprint_Click" />
+                            <!--<Label Content="Sub Tasks"></Label>
+                            <ComboBox Name="SubTasksList" Margin="5" />
+                            <Button Name="AddSubTaskToUserStory" Content="Add To User Story" Margin="10" Click="AddSubTaskToUserStory_Click" />-->
                         </StackPanel>
                     </GroupBox>
                     <!--Display-->
@@ -116,7 +133,7 @@
                         </WrapPanel>
                     </GroupBox>
                 </Grid>
-                
+
             </TabItem>
             <TabItem Header="Report">
                 <Grid>
@@ -127,8 +144,12 @@
                             <Label Content=" - Reports" FontSize="20" FontFamily="Century Gothic"/>
                         </WrapPanel>
                     </GroupBox>
-                    <GroupBox>
-                        <Button x:Name="SaveToPdf" Content="Save to Pdf" Margin="5" Width="75" Height="50" Click="SaveToPdf_Click"/>
+                    <GroupBox Header="Backlog" BorderThickness="2" BorderBrush="Black"  Margin="10,50,340,40" Grid.ColumnSpan="3">
+                        <WrapPanel>
+                            <Button x:Name="SaveToPdf" Content="Save to Pdf" Margin="5" Width="75" Height="50" Click="SaveToPdf_Click"/>
+                            <Button x:Name="Report" Content="Report" Margin="5" Width="75" Height="50" Click="Report_Click"/>
+                        </WrapPanel>
+                        
                     </GroupBox>
                 </Grid>
             </TabItem>
