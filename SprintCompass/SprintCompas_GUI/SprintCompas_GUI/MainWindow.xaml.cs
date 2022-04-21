@@ -114,15 +114,18 @@ namespace SprintCompas_GUI
                         foreach (var u in s.userStories)
                         {
                             display.Text += $"\tUser Story:\t{u.story}\n";
-                            
-                            if(u.subTasks != null)
+
+                            //Print subtasks to screen
+                            display.Text += $"\nSub Tasks: \n";
+
+                            if (u.subTasks != null)
                             {
                                 //Print subtasks
                                 foreach (var st in u.subTasks)
                                 {
-                                    display.Text += $"\tSubTasks:{st.description}\n";
-                                    display.Text += $"\tSubTasks:{st.initialEstimate}\n";
-                                    display.Text += $"\tSubTasks:{st.hoursRemaining}\n";
+                                    display.Text += $"\tDescription: {st.description}\n";
+                                    display.Text += $"\t\tEstimate Hours: {st.initialEstimate}\n";
+                                    display.Text += $"\t\tHours remaining: {st.hoursRemaining}\n";
                                 }
                             }
                             else
@@ -155,6 +158,22 @@ namespace SprintCompas_GUI
                     display.Text += $"\tIRE: {u.relativeEstimate}\n";
                     display.Text += $"\tIRC: {u.estimatedCost}\n\n";
                     count++;
+
+                    //Print Subtasks
+                    if (u.subTasks != null)
+                    {
+
+                        foreach (var st in u.subTasks)
+                        {
+                            display.Text += $"\tDescription: {st.description}\n";
+                            display.Text += $"\t\tEstimate Hours: {st.initialEstimate}\n";
+                            display.Text += $"\t\tHours remaining: {st.hoursRemaining}\n";
+                        }
+                    }
+                    else
+                    {
+                        display.Text += $"\tCurrently, there are no sub tasks.\n";
+                    }
                 }
             }
             else
@@ -199,6 +218,12 @@ namespace SprintCompas_GUI
             //Print results to screen
             Print(display2, ProjectName, proj);
 
+            //Populate combo box with user stories
+            foreach (var u in proj.UserStories)
+            {
+                UserStoryList2.Items.Add(u.story);
+            }
+
             //Populate combobox with teammembers
             //foreach (var t in proj.TeamMembers)
             //{
@@ -213,6 +238,7 @@ namespace SprintCompas_GUI
             ParserJson parser = new ParserJson();
             Project temp = new();
             UserStory uS = new UserStory();
+            uS.subTasks = new();
             uS.story = UserStory.Text;
             uS.priority = int.Parse(Priority.Text);
             uS.relativeEstimate = int.Parse(IrE.Text);
@@ -229,6 +255,15 @@ namespace SprintCompas_GUI
             temp = parser.fromJSON(ProjectName.Text);
 
             Print(display2, ProjectName, temp);
+
+            //Clear ComboBoxes
+            UserStoryList2.Items.Clear();
+
+            //Populate combo box with user stories
+            foreach (var u in proj.UserStories)
+            {
+                UserStoryList2.Items.Add(u.story);
+            }
 
         }
 
@@ -358,14 +393,6 @@ namespace SprintCompas_GUI
 
             ParserJson parser = new ParserJson();
 
-            //If sprint doesnt exists, add it first
-            //if (proj.Sprints.Count < SprintBox.SelectedIndex)
-            //{
-            //    //Save sprint to Json
-            //    parser.toJSON(ProjectName2.Text, proj);
-            //}
-
-            Project proj = new();
             Subtask st = new Subtask();
             st.description = Description.Text;
             st.initialEstimate = int.Parse(InitialEstimate.Text);
@@ -376,26 +403,19 @@ namespace SprintCompas_GUI
             {
                 proj.UserStories[UserStoryList2.SelectedIndex].subTasks.Add(st);
                 //Save user stories to Json
-                parser.toJSON(ProjectName2.Text, proj);
+                //parser.toJSON(ProjectName.Text, proj);
             }
 
             //Save user stories to Json
             parser.toJSON(ProjectName.Text, proj);
 
             //read details to the screen
-            proj = parser.fromJSON(ProjectName2.Text);
+            proj = parser.fromJSON(ProjectName.Text);
 
-            Print(display3, ProjectName2, proj);
+            Print(display2, ProjectName, proj);
 
             //Clear ComboBoxes
-            SprintBox.Items.Clear();
-            UserStoryList.Items.Clear();
-
-            //Populate combobox with sprints
-            //foreach (var s in proj.Sprints)
-            //{
-            //    SprintBox.Items.Add(s.sprintName);
-            //}
+            UserStoryList2.Items.Clear();
 
             //Populate combo box with user stories
             foreach (var u in proj.UserStories)

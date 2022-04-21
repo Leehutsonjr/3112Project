@@ -15,8 +15,7 @@ namespace SprintCompass
         public double estimatedCost { get; set; }
 
         public List<TeamMember> teamMembers { get; set; }
-
-        public List<Subtask> subTasks;
+        public List<Subtask> subTasks { get; set; }
         //UserStory() Default constructor
         public UserStory()
         {

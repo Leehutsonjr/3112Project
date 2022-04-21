@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SprintCompas_GUI"
         mc:Ignorable="d"
-        Title="Three Coders Walk Into A Bar - 3112 Project 1" Height="500" Width="600">
+        Title="Three Coders Walk Into A Bar - 3112 Project 1" Height="520" Width="600">
     <Grid>
         <TabControl>
             <TabItem Header="New">
