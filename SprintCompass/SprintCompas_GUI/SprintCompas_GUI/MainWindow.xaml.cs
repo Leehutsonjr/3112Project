@@ -83,7 +83,7 @@ namespace SprintCompas_GUI
             //Display project name
             display.Text += $"\tProject Name: {projectName.Text}\n";
 
-            if(buttonName != "SprintFind" && buttonName != "AddUser" && buttonName != "AddSub")
+            if(buttonName != "SprintFind" && buttonName != "AddUser" && buttonName != "AddSub" && buttonName != "SprintAdd")
             {
                 //Display main project info
                 display.Text += $"\tTeam Name: {proj.TeamName}\n";
@@ -297,6 +297,7 @@ namespace SprintCompas_GUI
             //If the sprint is there, save the user story to it
             if (subTask != null)
             {
+                userStory.teamMembers[TeamMemberList.SelectedIndex].hoursWorked += hoursWorked;
                 subTask.hoursRemaining = hoursRemaining;
                 subTask.HoursBooked.Add(teamMember, hoursWorked);
                 //Save user stories to Json
@@ -481,6 +482,8 @@ namespace SprintCompas_GUI
 
         private void LoadSubtasks_Click(object sender, RoutedEventArgs e)
         {
+            //Clear ComboBoxes
+            SubTasks.Items.Clear();
             //Populate combo box with sub tasks
             foreach (var u in proj.UserStories[UserStoryList.SelectedIndex].subTasks)
             {

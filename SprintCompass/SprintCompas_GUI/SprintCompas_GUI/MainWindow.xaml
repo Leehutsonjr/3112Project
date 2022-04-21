@@ -45,11 +45,12 @@
             <TabItem Header="Projects">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="59*"/>
+                        <ColumnDefinition Width="54*"/>
+                        <ColumnDefinition Width="5*"/>
                         <ColumnDefinition Width="238*"/>
                     </Grid.ColumnDefinitions>
                     <!--Header-->
-                    <GroupBox BorderThickness="2" BorderBrush="Black" Margin="10,10,10,0" Height="39" VerticalAlignment="Top" Grid.ColumnSpan="2" >
+                    <GroupBox BorderThickness="2" BorderBrush="Black" Margin="10,10,10,0" Height="39" VerticalAlignment="Top" Grid.ColumnSpan="3" >
                         <WrapPanel Grid.Row="1" Grid.ColumnSpan="2" >
                             <Label Content="Sprint Compass" FontSize="20" FontFamily="Century Gothic" FontWeight="SemiBold" FontStyle="Italic"/>
                             <Label Content="- Projects" FontSize="20" FontFamily="Century Gothic"/>
@@ -58,7 +59,7 @@
                         </WrapPanel>
                     </GroupBox>
                     <!--Sprint info-->
-                    <GroupBox Header="Sprint info" BorderThickness="2" BorderBrush="Black"  Margin="10,50,340,230" Grid.ColumnSpan="2" VerticalAlignment="Top">
+                    <GroupBox Header="User Story" BorderThickness="2" BorderBrush="Black"  Margin="10,50,340,0" Grid.ColumnSpan="3" VerticalAlignment="Top">
                         <StackPanel>
                             <TextBox x:Name="UserStory" Text="User Story" Margin="5"  />
                             <TextBox x:Name="Priority" Text="Priority" Margin="5"  />
@@ -68,7 +69,7 @@
                         </StackPanel>
                     </GroupBox>
                     <!---Subtasks-->
-                    <GroupBox Header="Subtasks" BorderThickness="2" BorderBrush="Black" Margin="10,230,340,40" Grid.ColumnSpan="2">
+                    <GroupBox Header="Subtasks" BorderThickness="2" BorderBrush="Black" Margin="10,230,340,40" Grid.ColumnSpan="3">
                         <StackPanel>
                             <ComboBox Name="UserStoryList2" Margin="5" />
                             <TextBox x:Name="Description" Text="Description" Margin="5"  />
@@ -78,7 +79,7 @@
                         </StackPanel>
                     </GroupBox>
                     <!--Display-->
-                    <GroupBox Header="Display" BorderThickness="2" BorderBrush="Black" Margin="142,50,10,40" Grid.Column="1">
+                    <GroupBox Header="Display" BorderThickness="2" BorderBrush="Black" Margin="142,50,10,40" Grid.Column="2">
                         <WrapPanel Grid.Row="1" Grid.ColumnSpan="2">
                             <ScrollViewer VerticalScrollBarVisibility="Auto">
                                 <TextBlock x:Name="display2" Text="Result info goes here..." TextWrapping="Wrap" Width="398" Height="700" Margin="3" />
@@ -111,10 +112,10 @@
                                 <ComboBox Name="UserStoryList" Margin="5" Width="100" />
                                 <Button Name="AddUserStoryToSprint" Content="Story To Sprint" Margin="5" Width="90" Click="AddUserStoryToSprint_Click" />
                             </WrapPanel>
-                            
-                            
+
+
                             <!--SelectionChanged="UserStoryList_SelectionChanged"-->
-                            
+
                             <!--<Label Content="Sub Tasks"></Label>
                             <ComboBox Name="SubTasksList" Margin="5" />
                             <Button Name="AddSubTaskToUserStory" Content="Add To User Story" Margin="10" Click="AddSubTaskToUserStory_Click" />-->
@@ -128,7 +129,7 @@
                                 <ComboBox Name="SubTasks" Margin="5" Width="100"/>
                                 <Button Name="LoadSubtasks" Content="Load Sub Tasks" Margin="5" Width="90" Click="LoadSubtasks_Click" />
                             </WrapPanel>
-                            
+
                             <Label Content="Team Member"></Label>
                             <ComboBox Name="TeamMemberList" Margin="5"/>
                             <TextBox x:Name="HoursWorked" Text="Hours Worked" Margin="5"  />
