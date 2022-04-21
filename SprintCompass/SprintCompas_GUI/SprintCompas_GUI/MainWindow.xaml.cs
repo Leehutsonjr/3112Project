@@ -58,6 +58,9 @@ namespace SprintCompas_GUI
                 case "AddTMToSub":
                     display.Text = $"The Team Member has Been Added to The Sub Task!\n\n";
                     break;
+                case "FindReport":
+                    display.Text = $"Project Located!\n\n";
+                    break;
             }
         }
 
@@ -80,7 +83,7 @@ namespace SprintCompas_GUI
             //Display project name
             display.Text += $"\tProject Name: {projectName.Text}\n";
 
-            if(buttonName != "SprintFind" && buttonName != "AddUser")
+            if(buttonName != "SprintFind" && buttonName != "AddUser" && buttonName != "AddSub")
             {
                 //Display main project info
                 display.Text += $"\tTeam Name: {proj.TeamName}\n";
@@ -90,7 +93,7 @@ namespace SprintCompas_GUI
                 display.Text += $"\tEstimated Story Points: {proj.EstStoryPts}\n";
                 display.Text += $"\tEstimated Cost: {proj.EstProjectCost.ToString()}\n";
 
-                display.Text += $"\nTeam Members: \n";
+                display.Text += $"Team Members: \n";
                 //TeamMembers
                 foreach (var t in proj.TeamMembers)
                 {
@@ -102,7 +105,7 @@ namespace SprintCompas_GUI
             }
 
             //Print sprints to screen
-            display.Text += $"\nSprints: \n";
+            display.Text += $"Sprints: \n";
             //Check if there are sprints
             if (proj.Sprints != null)
             {
@@ -119,9 +122,9 @@ namespace SprintCompas_GUI
                             display.Text += $"\tUser Story:\t{u.story}\n";
 
                             //Print subtasks to screen
-                            display.Text += $"\nSub Tasks: \n";
+                            display.Text += $"Sub Tasks: \n";
 
-                            if (u.subTasks != null)
+                            if (u.subTasks.Count > 0)
                             {
                                 //Print subtasks
                                 foreach (var st in u.subTasks)
@@ -147,7 +150,7 @@ namespace SprintCompas_GUI
                     }
                     else
                     {
-                        display.Text += $"\tCurrently, there are no user stories \n\tassigned to this sprint.\n";
+                        display.Text += $"\tCurrently, there are no user stories.\n";
                     }
                 }
             }
@@ -172,7 +175,7 @@ namespace SprintCompas_GUI
                     //Print subtasks to screen
                     display.Text += $"\nSub Tasks: \n";
                     //Print Subtasks
-                    if (u.subTasks != null)
+                    if (u.subTasks.Count > 0)
                     {
 
                         foreach (var st in u.subTasks)
@@ -290,9 +293,11 @@ namespace SprintCompas_GUI
             var subTask = userStory.subTasks[SubTasks.SelectedIndex];
             var teamMember = TeamMemberList.SelectedItem.ToString();
             var hoursWorked = int.Parse(HoursWorked.Text);
+            var hoursRemaining = int.Parse(Reestimate.Text);
             //If the sprint is there, save the user story to it
             if (subTask != null)
             {
+                subTask.hoursRemaining = hoursRemaining;
                 subTask.HoursBooked.Add(teamMember, hoursWorked);
                 //Save user stories to Json
                 parser.toJSON(ProjectName2.Text, proj);
@@ -437,7 +442,7 @@ namespace SprintCompas_GUI
             Subtask st = new Subtask();
             st.description = Description.Text;
             st.initialEstimate = int.Parse(InitialEstimate.Text);
-            st.hoursRemaining = int.Parse(HoursRemaining.Text);
+            //st.hoursRemaining = int.Parse(HoursRemaining.Text);
        
             //Save subtask to user story
             if (proj.UserStories[UserStoryList2.SelectedIndex] != null)
@@ -481,6 +486,16 @@ namespace SprintCompas_GUI
             {
                 SubTasks.Items.Add(u.description);
             }
+        }
+
+        private void FindSprint3_Click(object sender, RoutedEventArgs e)
+        {
+            buttonName = "FindReport";
+            ParserJson parser = new ParserJson();
+            proj = parser.fromJSON(ProjectName3.Text);
+
+            //Print results to screen
+            Print(display4, ProjectName3, proj);
         }
     }
 }
